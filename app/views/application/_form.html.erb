@@ -1,0 +1,11 @@
+<%= form_for(twitter_user, :url => {:controller => :"application", :action => :get_followers}) do |f| %>
+
+  <div class="field">
+    <%= f.label :UserName %>
+    <%= f.text_field :UserName %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Get Followers" %>
+  </div>
+<% end %>
