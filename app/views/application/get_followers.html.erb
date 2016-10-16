@@ -1,0 +1,18 @@
+<h1>Followers for <%= @userName %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Follower Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @twitFollowers.each do |tf| %>
+      <tr>
+        <td><%= tf.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', root_path %>
