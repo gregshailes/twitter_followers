@@ -10,31 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014162512) do
+ActiveRecord::Schema.define(version: 20161016111823) do
 
-  create_table "monkeys", force: :cascade do |t|
+  create_table "followers", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pizzas", force: :cascade do |t|
-    t.string   "Base"
-    t.string   "Topping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "twitter_users", force: :cascade do |t|
-    t.string   "UserName"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "user_followers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
