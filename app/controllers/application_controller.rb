@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
         dbFollower = Follower.find_by(id:uf.follower_id)
 
         # Does this follower still exist in Twitter?
-        if @twitFollowers.select{|r| r.name == dbFollower.name }.count == 0
+        if @twitFollowers == nil or @twitFollowers.select{|r| r.name == dbFollower.name }.count == 0
           uf.destroy
         end
 
