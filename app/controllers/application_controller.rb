@@ -39,11 +39,14 @@ class ApplicationController < ActionController::Base
 
     begin
       # Get the followers of this user from Twitter
-      @twitFollowers = $twitter.followers(@userName)
+      @twitFollowers = $twitter.followers(@userName).take(100)
+
+
     rescue Exception => e
       @errorProc = "Connecting to twitter"
       @errorMsg = e.message
       render :error
+
     end
 
     # Remove relationships that no longer exist in Twitter
@@ -51,18 +54,13 @@ class ApplicationController < ActionController::Base
 
     if dbUserFollowers != nil
 
-      puts "dbUserFollowers.count: " + dbUserFollowers.count.to_s
-
       dbUserFollowers.each do |uf|
 
         # Get the follower's name
         dbFollower = Follower.find_by(id:uf.follower_id)
 
-        puts "Checking if " + dbFollower.name + " is still in Twitter's list"
-
         # Does this follower still exist in Twitter?
         if @twitFollowers.select{|r| r.name == dbFollower.name }.count == 0
-          puts "Removing " + uf.id.to_s
           uf.destroy
         end
 
