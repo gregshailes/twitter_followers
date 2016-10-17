@@ -3,14 +3,20 @@
 <table>
   <thead>
     <tr>
-      <th>Follower Name</th>
+      <th>Screen Name</th>
+      <th>Full Name</th>
+      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @twitFollowers.each do |tf| %>
       <tr>
+        <td><%= tf.screen_name %></td>
         <td><%= tf.name %></td>
+        <td><%= tf.location %></td>
+        <td><%= tf.description %></td>
       </tr>
     <% end %>
   </tbody>

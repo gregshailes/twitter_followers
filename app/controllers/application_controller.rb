@@ -39,11 +39,12 @@ class ApplicationController < ActionController::Base
 
     begin
       # Get the followers of this user from Twitter
+      # Limit to top 100 for now, pagination to be added at some future date...
       @twitFollowers = $twitter.followers(@userName).take(100)
 
 
     rescue Exception => e
-      @errorProc = "Connecting to twitter"
+      @errorProc = "Connect to Twitter"
       @errorMsg = e.message
       render :error
 
@@ -60,7 +61,7 @@ class ApplicationController < ActionController::Base
         dbFollower = Follower.find_by(id:uf.follower_id)
 
         # Does this follower still exist in Twitter?
-        if @twitFollowers == nil or @twitFollowers.select{|r| r.name == dbFollower.name }.count == 0
+        if @twitFollowers == nil or @twitFollowers.select{|r| r.screen_name == dbFollower.screen_name }.count == 0
           uf.destroy
         end
 
@@ -73,10 +74,10 @@ class ApplicationController < ActionController::Base
 
       @twitFollowers.each do |f|
 
-        dbFollower = Follower.find_by(name:f.name)
+        dbFollower = Follower.find_by(screen_name:f.screen_name)
         if dbFollower == nil
           # We haven't got a record of this follower yet - create one
-          dbFollower = Follower.new(name:f.name)
+          dbFollower = Follower.new(screen_name: f.screen_name, name:f.name, location:f.location, description:f.description)
           dbFollower.save
         end
 

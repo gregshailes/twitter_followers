@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016111823) do
+ActiveRecord::Schema.define(version: 20161017061341) do
 
   create_table "followers", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "screen_name"
+    t.string   "location"
+    t.string   "description"
   end
 
   create_table "user_followers", force: :cascade do |t|
