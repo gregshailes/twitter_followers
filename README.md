@@ -2,6 +2,8 @@
 
 Just a small web app written to learn the basics of Ruby-on-Rails.
 
+* Ruby version 2.2.4
+* Rails version 5.0.0.1
 * Uses [sferik's Twitter gem](https://sferik.github.io/twitter/) (v5.16.0)
 
 To-do List
