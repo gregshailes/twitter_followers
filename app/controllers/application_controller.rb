@@ -23,10 +23,11 @@ class ApplicationController < ActionController::Base
     if @userName.blank?
       @errorProc = "Verify userName present"
       @errorMsg = "Username not supplied"
-      render :error
+      render :error, :status => 500
+      return
     end
 
-    # Stip the '@' off, if it's been entered - we don't need it
+    # Strip the '@' off, if it's been entered - we don't need it
     if @userName.slice(0, 1) == "@"
       @userName = @userName.slice(1, @userName.length - 1)
     end
@@ -46,8 +47,8 @@ class ApplicationController < ActionController::Base
     rescue Exception => e
       @errorProc = "Connect to Twitter"
       @errorMsg = e.message
-      render :error
-
+      render :error, :status => 500
+      return
     end
 
     # Remove relationships that no longer exist in Twitter
