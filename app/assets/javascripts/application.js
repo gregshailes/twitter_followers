@@ -14,3 +14,23 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+function setFocus()
+{
+    // Sets the form focus to the first element found in forms[0] that
+    // is a text field or text area.
+    if (document.forms[0] == null) return;
+
+    // Iterate though elements
+    var e;
+    for (var i = 0; i < document.forms[0].elements.length; i++)
+    {
+        e = document.forms[0].elements[i];
+        if ((e.type == "text") || (e.type == "textarea"))
+        {
+            e.focus();
+            break;
+        }
+    }
+}

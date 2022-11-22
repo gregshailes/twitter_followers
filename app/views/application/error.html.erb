@@ -1,0 +1,18 @@
+<h1>Unable to Find Followers</h1>
+
+<p>Unfortunately, an error has occurred which means that we can't find the followers for <%= @userName %>.</p>
+<p>This may be because the user doesn't exist, or has chosen to keep their Twitter profile private.</p>
+<p>Click the Back link at the foot of this page to try again.</p>
+
+<h2>Technical Details</h2>
+<p>
+  <strong>Process:</strong>
+  <%= @errorProc %>
+</p>
+
+<p>
+  <strong>Error Message:</strong>
+  <%= @errorMsg %>
+</p>
+
+<%= link_to 'Back', root_path %>
